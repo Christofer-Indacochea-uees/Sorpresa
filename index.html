@@ -30,7 +30,12 @@
 
     h1 { font-size: 22px; color: #ff4d6d; }
 
-    .buttons { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
     button {
       padding: 12px;
@@ -73,9 +78,14 @@
 
 <body>
 
+<!-- MUSICA -->
+<audio id="music">
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container" id="screen1">
   <h1>Hola... tengo algo importante que decirte 💭</h1>
-  <button onclick="nextScreen(2)">Continuar</button>
+  <button onclick="startExperience()">Continuar</button>
 </div>
 
 <div class="container" id="screen2" style="display:none">
@@ -93,19 +103,26 @@
 </div>
 
 <div class="container" id="screen4" style="display:none">
-  <h1>Siempre lo supe amor ❤️</h1>
-  <p>Prometo hacerte muy feliz 💕</p>
+  <h1>Lo sabía amor ❤️</h1>
 </div>
 
 <div class="hearts" id="hearts"></div>
 
 <script>
+
+  // INICIA MUSICA EN EL PRIMER CLICK
+  function startExperience(){
+    const music = document.getElementById("music");
+    music.play().catch(()=>{});
+    nextScreen(2);
+  }
+
   function nextScreen(num){
     document.querySelectorAll('.container').forEach(el=>el.style.display='none');
     document.getElementById('screen'+num).style.display='block';
   }
 
-  // botón NO que huye
+  // botón NO que se mueve
   const noBtn=document.getElementById('noBtn');
   noBtn.addEventListener('touchstart',moveButton);
   noBtn.addEventListener('mouseover',moveButton);
@@ -121,10 +138,10 @@
     nextScreen(4);
   }
 
-  // corazones animados
+  // corazones
   function showHearts(){
     const hearts=document.getElementById('hearts');
-    for(let i=0;i<20;i++){
+    for(let i=0;i<25;i++){
       const h=document.createElement('div');
       h.className='heart';
       h.style.left=Math.random()*100+'vw';
@@ -133,6 +150,7 @@
       setTimeout(()=>h.remove(),4000);
     }
   }
+
 </script>
 
 </body>
