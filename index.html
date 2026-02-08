@@ -78,19 +78,16 @@
 
 <body>
 
-<!-- VIDEO DE LOVER CARGADO DESDE EL INICIO -->
-<iframe
-  id="loverVideo"
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/-BjZmE2gtdo?start=0&autoplay=1&loop=1&playlist=-BjZmE2gtdo"
-  allow="autoplay"
-  style="position:absolute; opacity:0;">
+<!-- VIDEO OCULTO DE LOVER -->
+<iframe id="loverMusic"
+src="https://www.youtube.com/embed/-BjZmE2gtdo?autoplay=1&loop=1&playlist=-BjZmE2gtdo"
+allow="autoplay"
+style="display:none;">
 </iframe>
 
 <div class="container" id="screen1">
   <h1>Hola... tengo algo importante que decirte 💭</h1>
-  <button onclick="nextScreen(2)">Continuar</button>
+  <button onclick="startMusic()">Continuar</button>
 </div>
 
 <div class="container" id="screen2" style="display:none">
@@ -114,6 +111,12 @@
 <div class="hearts" id="hearts"></div>
 
 <script>
+
+  // INICIA LA MUSICA DE YOUTUBE
+  function startMusic(){
+    const frame = document.getElementById("loverMusic");
+    nextScreen(2);
+  }
 
   function nextScreen(num){
     document.querySelectorAll('.container').forEach(el=>el.style.display='none');
@@ -153,3 +156,4 @@
 
 </body>
 </html>
+
