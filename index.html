@@ -112,10 +112,24 @@
 
   // INICIA MUSICA EN EL PRIMER CLICK
   function startExperience(){
-    const music = document.getElementById("music");
-    music.play().catch(()=>{});
-    nextScreen(2);
+  const music = document.getElementById("music");
+
+  music.currentTime = 0;
+  music.volume = 1;
+
+  const playPromise = music.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      console.log("Audio iniciado");
+    }).catch(() => {
+      alert("Toca la pantalla nuevamente para activar el sonido ❤️");
+    });
   }
+
+  nextScreen(2);
+}
+
 
   function nextScreen(num){
     document.querySelectorAll('.container').forEach(el=>el.style.display='none');
@@ -155,3 +169,4 @@
 
 </body>
 </html>
+
